@@ -246,6 +246,7 @@ public class Calculator implements ActionListener{
 				textField.setText(textField.getText()+string.charAt(i));
 			}
 		}
+
 		
 		if (e.getSource() == neg) {
 			double temp = Double.parseDouble(textField.getText());
