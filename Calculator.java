@@ -2,10 +2,13 @@ import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
+
 public class Calculator implements ActionListener{
 	ImageIcon image = new ImageIcon("C:\\Codding\\Side-Projects\\Calculator\\img.png");
+
 	int root = 8730; //ascii root
 	int root3 = 8731; //ascii q-root
+
 	Border border = BorderFactory.createLineBorder(Color.BLACK, 4);
 	JFrame frame;
 	JTextField textField;
@@ -17,7 +20,8 @@ public class Calculator implements ActionListener{
 	Font myFont = new Font("Bahnschrift SemiBold", Font.PLAIN, 30);
 	double num1=0,num2=0,res=0;
 	char op;
-	Boolean AEq = false; 
+	Boolean AEq = false;
+
 	Calculator(){
 		frame = new JFrame("Calculator");
 		frame.setIconImage(image.getImage());
@@ -26,6 +30,7 @@ public class Calculator implements ActionListener{
 		frame.setBackground(new Color(163,204,247));
 		frame.setLayout(null);
 		frame.setResizable(false);
+
 		textField = new JTextField();
 		textField.setBounds(40,20,500,100);
 		textField.setFont(myFont);
@@ -33,6 +38,7 @@ public class Calculator implements ActionListener{
 		textField.setBorder(border);
 		textField.setEditable(false);
 		textField.setHorizontalAlignment(JTextField.CENTER);
+
 		add = new JButton("+");
 		sub = new JButton("-");
 		mul = new JButton("x");
@@ -45,6 +51,7 @@ public class Calculator implements ActionListener{
 		del = new JButton("Del");
 		clr = new JButton("C");
 		neg = new JButton("( - )");
+
 		operations[0] = add;
 		operations[1] = sub;
 		operations[2] = mul;
@@ -57,38 +64,46 @@ public class Calculator implements ActionListener{
 		operations[9] = del;
 		operations[10] = clr;
 		operations[11] = neg;
+
 		for (int i=0; i < operations.length; i++) {
 			operations[i].addActionListener(this);
 			operations[i].setFont(myFont);
 			operations[i].setFocusable(false);
 		}
+
 		for (int i=0; i < numbers.length; i++) {
 			numbers[i] = new JButton(String.valueOf(i));
 			numbers[i].addActionListener(this);
 			numbers[i].setFont(myFont);
 			numbers[i].setFocusable(false);
 		}
+
 		neg.setBounds(440, 130, 100, 50);
 		del.setBounds(440, 190, 100, 50);
 		clr.setBounds(315, 190, 100, 50);
 		pwr.setBounds(180, 190, 100, 50);
 		rot.setBounds(40, 190, 100, 50);
 		rot3.setBounds(40, 130, 100, 50);
+
 		panel = new JPanel();
 		panel.setBounds(40, 250, 500, 500);
 		panel.setLayout(new GridLayout(4,4,10,10));
 		panel.setBackground(new Color(194, 192, 196));
+
 		for (int i = 1; i < 4; i++) {
 			panel.add(numbers[i]);
 		}
+
 		panel.add(add);
 		for (int i = 4; i < 7; i++) {
 			panel.add(numbers[i]);
 		}
+
 		panel.add(sub);
 		for (int i = 7; i < 10; i++) {
 			panel.add(numbers[i]);
 		}
+
 		panel.add(mul);
 		panel.add(dec);
 		panel.add(numbers[0]);
@@ -104,9 +119,11 @@ public class Calculator implements ActionListener{
 		frame.add(textField);
 		frame.setVisible(true);
 	}
+
 	public static void main(String[] args) {
 		new Calculator();
 	}
+
 	public void actionPerformed(ActionEvent e) {
 		for (int i=0; i<10; i++) {
 			if (e.getSource() == numbers[i]) {
@@ -117,35 +134,42 @@ public class Calculator implements ActionListener{
 				textField.setText(textField.getText().concat(String.valueOf(i)));
 			}
 		}
+
 		if (e.getSource() == dec){
 			textField.setText(textField.getText().concat("."));
 		}
+
 		if (e.getSource() == add){
 			num1 = Double.parseDouble(textField.getText());
 			op = '+';
 			AEq = true;
 		}
+
 		if (e.getSource() == sub){
 			num1 = Double.parseDouble(textField.getText());
 			op = '-';
 			AEq = true;
 		}
+
 		if (e.getSource() == mul){
 			num1 = Double.parseDouble(textField.getText());
 			op = '*';
 			AEq = true;
 		}
+
 		if (e.getSource() == div){
 			
 			num1 = Double.parseDouble(textField.getText());
 			op = '/';
 			AEq = true;
 		}
+
 		if (e.getSource() == pwr){
 			num1 = Double.parseDouble(textField.getText());
 			op = '^';
 			AEq = true;
 		}
+
 		if (e.getSource() == rot){
 			num1 = Double.parseDouble(textField.getText());
 			if (num1 < 0) {
@@ -159,6 +183,7 @@ public class Calculator implements ActionListener{
 			}
 			AEq = true;
 		}
+
 		if (e.getSource() == rot3) {
 			num1 = Double.parseDouble(textField.getText());
 			if (num1 < 0) {
@@ -172,6 +197,7 @@ public class Calculator implements ActionListener{
 			}
 			AEq = true;
 		}
+
 		if (e.getSource() == equ){
 			num2=Double.parseDouble(textField.getText());
 			switch(op){
@@ -209,6 +235,7 @@ public class Calculator implements ActionListener{
 
 			AEq = true;
 		}
+
 		if (e.getSource() == clr) {
 			textField.setText("");
 		}
@@ -219,6 +246,7 @@ public class Calculator implements ActionListener{
 				textField.setText(textField.getText()+string.charAt(i));
 			}
 		}
+		
 		if (e.getSource() == neg) {
 			double temp = Double.parseDouble(textField.getText());
 			temp *= -1;
