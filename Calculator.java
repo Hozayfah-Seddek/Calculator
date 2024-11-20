@@ -3,9 +3,9 @@ import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
 public class Calculator implements ActionListener{
-	ImageIcon imge = new ImageIcon("C:\\Codding\\Side-Projects\\Calculator\\img.png");
+	ImageIcon image = new ImageIcon("C:\\Codding\\Side-Projects\\Calculator\\img.png");
 	int root = 8730; //ascii root
-	int root3 = 8731; //ascii qroot
+	int root3 = 8731; //ascii q-root
 	Border border = BorderFactory.createLineBorder(Color.BLACK, 4);
 	JFrame frame;
 	JTextField textField;
@@ -20,7 +20,7 @@ public class Calculator implements ActionListener{
 	Boolean AEq = false; 
 	Calculator(){
 		frame = new JFrame("Calculator");
-		frame.setIconImage(imge.getImage());
+		frame.setIconImage(image.getImage());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(600,800);
 		frame.setBackground(new Color(163,204,247));
@@ -38,8 +38,8 @@ public class Calculator implements ActionListener{
 		mul = new JButton("x");
 		div = new JButton("/");
 		pwr = new JButton("^");
-		rot = new JButton(new Character((char) root).toString());
-		rot3 = new JButton(new Character((char) root3).toString());
+		rot = new JButton(Character.toString(root));
+		rot3 = new JButton(Character.toString(root3));
 		dec = new JButton(".");
 		equ = new JButton("=");
 		del = new JButton("Del");
@@ -105,7 +105,7 @@ public class Calculator implements ActionListener{
 		frame.setVisible(true);
 	}
 	public static void main(String[] args) {
-		Calculator calc = new Calculator();
+		new Calculator();
 	}
 	public void actionPerformed(ActionEvent e) {
 		for (int i=0; i<10; i++) {
@@ -197,7 +197,7 @@ public class Calculator implements ActionListener{
 					num1 = res;
 				}
 				else {
-					textField.setText("Can not devide by 0!");
+					textField.setText("Can not divide by 0!");
 				}
 				break;
 			case'^':
